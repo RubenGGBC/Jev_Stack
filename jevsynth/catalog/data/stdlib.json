@@ -11733,42 +11733,6 @@
    "doc": "csv.Sniffer.has_header (method)."
   },
   {
-   "id": "csv.field_size_limit",
-   "qualname": "csv.field_size_limit",
-   "kind": "function",
-   "module": "csv",
-   "group": "csv",
-   "params": [
-    [
-     "new_limit",
-     "int",
-     true,
-     "pos_kw"
-    ]
-   ],
-   "returns": "int",
-   "summary": "Sets an upper limit on parsed fields.",
-   "doc": "Sets an upper limit on parsed fields. csv.fieldsizelimit(limit)"
-  },
-  {
-   "id": "csv.field_size_limit+new_limit",
-   "qualname": "csv.field_size_limit",
-   "kind": "function",
-   "module": "csv",
-   "group": "csv",
-   "params": [
-    [
-     "new_limit",
-     "int",
-     false,
-     "pos_kw"
-    ]
-   ],
-   "returns": "int",
-   "summary": "Sets an upper limit on parsed fields.",
-   "doc": "Sets an upper limit on parsed fields. csv.fieldsizelimit(limit)"
-  },
-  {
    "id": "csv.get_dialect",
    "qualname": "csv.get_dialect",
    "kind": "function",
@@ -11993,210 +11957,6 @@
    "returns": "csv.Reader",
    "summary": "csvreader = reader(iterable , dialect='excel' optional keyword args) for row in csvreader: process(row)",
    "doc": "csvreader = reader(iterable , dialect='excel' optional keyword args) for row in csvreader: process(row) The \"iterable\" argument can be any object that returns a line of input for each iteration, such as a file object or a list. The optional \"dialect\" parameter is discussed below. The function also accepts optional keyword arguments which override settings provided by the dialect."
-  },
-  {
-   "id": "csv.register_dialect",
-   "qualname": "csv.register_dialect",
-   "kind": "function",
-   "module": "csv",
-   "group": "csv",
-   "params": [
-    [
-     "name",
-     "str",
-     false,
-     "pos"
-    ],
-    [
-     "dialect",
-     [
-      "Union",
-      [
-       "type",
-       "csv.Dialect"
-      ],
-      "str"
-     ],
-     true,
-     "pos_kw"
-    ],
-    [
-     "delimiter",
-     "str",
-     true,
-     "kw"
-    ],
-    [
-     "quotechar",
-     [
-      "Union",
-      "str",
-      "None"
-     ],
-     true,
-     "kw"
-    ],
-    [
-     "escapechar",
-     [
-      "Union",
-      "str",
-      "None"
-     ],
-     true,
-     "kw"
-    ],
-    [
-     "doublequote",
-     "bool",
-     true,
-     "kw"
-    ],
-    [
-     "skipinitialspace",
-     "bool",
-     true,
-     "kw"
-    ],
-    [
-     "lineterminator",
-     "str",
-     true,
-     "kw"
-    ],
-    [
-     "quoting",
-     [
-      "Literal",
-      "0",
-      "1",
-      "2",
-      "3"
-     ],
-     true,
-     "kw"
-    ],
-    [
-     "strict",
-     "bool",
-     true,
-     "kw"
-    ]
-   ],
-   "returns": "None",
-   "summary": "Create a mapping from a string name to a dialect class.",
-   "doc": "Create a mapping from a string name to a dialect class. dialect = csv.registerdialect(name, dialect, fmtparams)"
-  },
-  {
-   "id": "csv.register_dialect+dialect",
-   "qualname": "csv.register_dialect",
-   "kind": "function",
-   "module": "csv",
-   "group": "csv",
-   "params": [
-    [
-     "name",
-     "str",
-     false,
-     "pos"
-    ],
-    [
-     "dialect",
-     [
-      "Union",
-      [
-       "type",
-       "csv.Dialect"
-      ],
-      "str"
-     ],
-     false,
-     "pos_kw"
-    ],
-    [
-     "delimiter",
-     "str",
-     true,
-     "kw"
-    ],
-    [
-     "quotechar",
-     [
-      "Union",
-      "str",
-      "None"
-     ],
-     true,
-     "kw"
-    ],
-    [
-     "escapechar",
-     [
-      "Union",
-      "str",
-      "None"
-     ],
-     true,
-     "kw"
-    ],
-    [
-     "doublequote",
-     "bool",
-     true,
-     "kw"
-    ],
-    [
-     "skipinitialspace",
-     "bool",
-     true,
-     "kw"
-    ],
-    [
-     "lineterminator",
-     "str",
-     true,
-     "kw"
-    ],
-    [
-     "quoting",
-     [
-      "Literal",
-      "0",
-      "1",
-      "2",
-      "3"
-     ],
-     true,
-     "kw"
-    ],
-    [
-     "strict",
-     "bool",
-     true,
-     "kw"
-    ]
-   ],
-   "returns": "None",
-   "summary": "Create a mapping from a string name to a dialect class.",
-   "doc": "Create a mapping from a string name to a dialect class. dialect = csv.registerdialect(name, dialect, fmtparams)"
-  },
-  {
-   "id": "csv.unregister_dialect",
-   "qualname": "csv.unregister_dialect",
-   "kind": "function",
-   "module": "csv",
-   "group": "csv",
-   "params": [
-    [
-     "name",
-     "str",
-     false,
-     "pos_kw"
-    ]
-   ],
-   "returns": "None",
-   "summary": "Delete the name/dialect mapping associated with a string name.",
-   "doc": "Delete the name/dialect mapping associated with a string name. csv.unregisterdialect(name)"
   },
   {
    "id": "csv.writer",
@@ -21690,17 +21450,6 @@
    ],
    "summary": "Try to apply the pattern at the start of the string, returning a Match object, or None if no match was found.",
    "doc": "Try to apply the pattern at the start of the string, returning a Match object, or None if no match was found."
-  },
-  {
-   "id": "re.purge",
-   "qualname": "re.purge",
-   "kind": "function",
-   "module": "re",
-   "group": "re",
-   "params": [],
-   "returns": "None",
-   "summary": "Clear the regular expression caches",
-   "doc": "Clear the regular expression caches"
   },
   {
    "id": "re.search",
@@ -31722,9 +31471,7 @@
   },
   "Buffer": {
    "typevars": [],
-   "supers": [
-    "abc.ABC"
-   ],
+   "supers": [],
    "protocol": true
   },
   "Collection": {
@@ -32211,10 +31958,6 @@
    "supers": [],
    "protocol": true
   },
-  "abc.ABC": {
-   "typevars": [],
-   "supers": []
-  },
   "bool": {
    "typevars": [],
    "supers": [
@@ -32544,9 +32287,7 @@
     "_T_co",
     "_ExitT_co"
    ],
-   "supers": [
-    "abc.ABC"
-   ],
+   "supers": [],
    "protocol": true
   },
   "csv.Dialect": {
@@ -33383,9 +33124,7 @@
    "typevars": [
     "AnyStr_co"
    ],
-   "supers": [
-    "abc.ABC"
-   ],
+   "supers": [],
    "protocol": true
   },
   "os.stat_result": {

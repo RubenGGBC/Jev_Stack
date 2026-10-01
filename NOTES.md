@@ -25,3 +25,18 @@
   "system"): unas pocas descripciones de `pathlib` quedan con el texto neutro de reserva.
 - Varias clases no tienen docstring en 3.11 (p. ej. `csv.DictReader`): descripción neutra
   "csv.DictReader (constructor).". Candidato a mejora offline de descripciones.
+
+## Fase 2
+
+- Casado de tipos en `scope/typesys.py`: subtipos nominales (bases de typeshed),
+  estructurales (`__iter__`, `__len__`, `read`, `__enter__`...), promociones int→float,
+  uniones, `Literal`, TypeVar con restricciones/cotas y ensanchamiento (`max(int, float)`).
+- Todos los genéricos son covariantes (simplificación); el supertipo genérico más
+  cercano decide (`TextIOWrapper` itera `str` aunque `_IOBase` declare `bytes`).
+- Los literales no rellenan protocolos de colección: `"age"` es un `str`, que es
+  iterable, pero `csv.reader("age")` o `len("age")` no son candidatos.
+- Por defecto se excluyen componentes sin parámetros obligatorios (`list()`,
+  `Path.cwd()`): no consumen nada del scope y meten ruido en cada hueco.
+- Hallazgo: con tipos correctos `dict[str, str]` y `list[str]` también son
+  `Iterable[str]`, así que `csv.reader(row)` es candidato. Es correcto por tipos; queda
+  para el chooser descartarlo.

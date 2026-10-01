@@ -51,6 +51,8 @@ EXCLUDED = frozenset(
         "getattr", "hasattr", "id", "hash", "dir", "print", "object", "type", "super",
         "property", "staticmethod", "classmethod", "memoryview", "slice", "bytearray",
         "complex", "callable", "issubclass", "isinstance", "aiter", "anext", "open_code",
+        # cambian estado global del módulo
+        "register_dialect", "unregister_dialect", "field_size_limit", "purge",
     }
 )  # fmt: skip
 

@@ -27,8 +27,14 @@ class Scope:
     def names(self) -> set[str]:
         return {v.name for v in self.variables}
 
+    def get(self, name: str) -> Variable | None:
+        for v in self.variables:
+            if v.name == name:
+                return v
+        return None
+
     def of_type(self, t: TypeRef) -> list[Variable]:
-        """Variables de tipo `t`, de la más reciente a la más antigua."""
+        """Variables de tipo exactamente `t`, de la más reciente a la más antigua."""
         return [v for v in reversed(self.variables) if v.type == t]
 
     def copy(self) -> Scope:

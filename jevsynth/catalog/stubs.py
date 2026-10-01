@@ -494,7 +494,7 @@ class StubIndex:
         supers: list[TypeRef] = []
         for b in ref.node.bases:
             base_name = ast.unparse(b.value if isinstance(b, ast.Subscript) else b).rsplit(".", 1)[-1]
-            if base_name in {"Generic", "Protocol", "object", "NamedTuple", "TypedDict"}:
+            if base_name in {"Generic", "Protocol", "object", "NamedTuple", "TypedDict", "ABC"}:
                 continue
             t = self.to_type(b, ref.module, ctx)
             if t.name not in {ANY, "object"} and t not in supers:
