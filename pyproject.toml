@@ -15,13 +15,16 @@ dev = ["pytest>=8", "ruff>=0.5", "mypy>=1.10"]
 [tool.setuptools.packages.find]
 include = ["jevsynth*"]
 
+[tool.setuptools.package-data]
+jevsynth = ["catalog/data/*.json", "eval/tasks/*.json"]
+
 [tool.pytest.ini_options]
 testpaths = ["jevsynth/tests"]
 markers = ["jev: tests que llaman a Jev real (excluidos por defecto)"]
 addopts = "-m 'not jev'"
 
 [tool.ruff]
-line-length = 100
+line-length = 110
 target-version = "py311"
 
 [tool.ruff.lint]
