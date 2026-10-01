@@ -16,7 +16,7 @@ _STOPWORDS = frozenset(
     }
 )  # fmt: skip
 
-TASK_PREFIX = "tarea:"
+from jevsynth.chooser.base import TASK_PREFIX  # noqa: E402
 
 
 def words(text: str) -> set[str]:

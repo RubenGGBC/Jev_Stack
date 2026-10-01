@@ -25,9 +25,36 @@ class TypeRef:
     name: str
     args: tuple[TypeRef, ...] = ()
 
+    def __deepcopy__(self, memo: dict[int, object]) -> TypeRef:
+        return self
+
+    def __eq__(self, other: object) -> bool:
+        if self is other:
+            return True
+        if not isinstance(other, TypeRef) or hash(self) != hash(other):
+            return False
+        return self.name == other.name and self.args == other.args
+
+    def __hash__(self) -> int:
+        # Hash cacheado: TypeRef es inmutable y se usa mucho como clave.
+        h: int | None = self.__dict__.get("_hash")
+        if h is None:
+            h = hash((self.name, self.args))
+            object.__setattr__(self, "_hash", h)
+        return h
+
     @property
     def is_var(self) -> bool:
         return self.name.startswith("~")
+
+    @property
+    def is_ground(self) -> bool:
+        """Sin variables de tipo en ninguna parte."""
+        g: bool | None = self.__dict__.get("_ground")
+        if g is None:
+            g = not self.is_var and all(a.is_ground for a in self.args)
+            object.__setattr__(self, "_ground", g)
+        return g
 
     def __str__(self) -> str:
         if self.name == UNION:
@@ -188,6 +215,9 @@ class Component:
     module: str = ""  # módulo a importar ("" para builtins)
     group: str = ""  # agrupación para elecciones jerárquicas
     doc: str = ""  # docstring más largo (saneado) para la ablación de descripciones
+
+    def __deepcopy__(self, memo: dict[int, object]) -> Component:
+        return self
 
     def __post_init__(self) -> None:
         if not self.id:

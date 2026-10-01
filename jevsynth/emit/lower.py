@@ -9,6 +9,7 @@ import re
 from jevsynth.catalog.model import Component, TypeRef
 from jevsynth.catalog.operators import BINARY
 from jevsynth.emit.ir import (
+    CURRENT_HOLE,
     Assign,
     Call,
     Const,
@@ -68,7 +69,7 @@ def lower_expr(e: Expr) -> ast.expr:
     if isinstance(e, Const):
         return ast.Constant(e.lit.value)
     if isinstance(e, HoleExpr):
-        return ast.Constant(Ellipsis)
+        return ast.Name(CURRENT_HOLE, ast.Load()) if e.current else ast.Constant(Ellipsis)
     if isinstance(e, ListComp):
         gen = ast.comprehension(
             target=ast.Name(e.var, ast.Store()),
@@ -135,7 +136,7 @@ def lower_stmt(s: Stmt) -> ast.stmt:
     if isinstance(s, If):
         return ast.If(lower_expr(s.cond), lower_block(s.body), [])
     assert isinstance(s, HoleStmt)
-    return ast.Expr(ast.Constant(Ellipsis))
+    return ast.Expr(ast.Name(CURRENT_HOLE, ast.Load()) if s.current else ast.Constant(Ellipsis))
 
 
 _SIMPLE_ANNOTATION = re.compile(r"[A-Za-z_\[\], |]+")
@@ -152,12 +153,12 @@ def _annotation(t: TypeRef | None) -> ast.expr | None:
     return ast.parse(text, mode="eval").body
 
 
-def lower_program(p: Program) -> ast.Module:
+def lower_program(p: Program, *, imports: bool = True) -> ast.Module:
     modules = sorted({c.module for c in components_used(p) if c.module and c.kind != "method"})
-    imports: list[ast.stmt] = [ast.Import([ast.alias(m)]) for m in modules]
+    import_stmts: list[ast.stmt] = [ast.Import([ast.alias(m)]) for m in modules] if imports else []
     body = lower_block(p.body)
     if p.params is None:
-        mod = ast.Module([*imports, *body], [])
+        mod = ast.Module([*import_stmts, *body], [])
     else:
         args = ast.arguments(
             posonlyargs=[],
@@ -167,15 +168,15 @@ def lower_program(p: Program) -> ast.Module:
             defaults=[],
         )
         fn = ast.FunctionDef(p.name, args, body, [], _annotation(p.returns), lineno=0)
-        mod = ast.Module([*imports, fn], [])
+        mod = ast.Module([*import_stmts, fn], [])
     return ast.fix_missing_locations(mod)
 
 
-def emit(p: Program, *, inline: bool = False) -> str:
+def emit(p: Program, *, inline: bool = False, imports: bool = True) -> str:
     """Código Python del programa. Con `inline`, se plegan temporales de un solo uso."""
     if inline:
         p = inline_temporaries(p)
-    return ast.unparse(lower_program(p)) + "\n"
+    return ast.unparse(lower_program(p, imports=imports)) + "\n"
 
 
 # ---------------------------------------------------------------------------

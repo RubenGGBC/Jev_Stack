@@ -165,8 +165,7 @@ class Builder:
         if isinstance(runtime, type) and issubclass(runtime, BaseException):
             return
         # Solo clases propias de los módulos objetivo, no reexportaciones (statistics.Decimal).
-        home = ref.canonical.rpartition(".")[0] or "builtins"
-        if home not in MODULES:
+        if ref.module.lstrip("_") not in MODULES:
             return
         self.harvested.add(ref.canonical)
         ctx = self.ix.class_ctx(ref)

@@ -60,3 +60,28 @@
 - Pase opcional de plegado: una temporal de un solo uso se mete en la instrucción
   siguiente si se evalúa una sola vez allí (no en el cuerpo de un `for` ni en el
   elemento/condición de una comprensión).
+
+## Fase 5
+
+- Motor (`synth/engine.py`): el programa parcial es la IR + una agenda de tareas. Las
+  tareas de decisión (instrucción, hueco de expresión, colección a recorrer) generan
+  opciones cerradas; las automáticas (nombrar/tipar resultados, comprobar llamadas
+  anidadas) las ejecuta el script. Cada rama trabaja sobre una copia profunda.
+- Huecos: argumentos de instrucciones solo con símbolos o literales (los intermedios se
+  asignan a variables). Se permite anidar llamadas (profundidad ≤ 2) solo donde no hay
+  instrucción a la que asignar: elemento/condición de comprensión, condición de `if` y
+  recurso del `with`. Para ofrecer ahí `float(row['age'])` se usan "variables virtuales":
+  una por tipo producible en un paso.
+- Decisiones forzadas (una sola opción) no consultan al chooser.
+- Elección jerárquica cuando hay más de `max_options` (30) opciones: grupo (módulo,
+  clase, variables, literales, control) y luego opción. Un hueco de instrucción con
+  `text: str` tiene ~200 candidatos tipados.
+- Búsqueda en haz con puntuación = suma de log-probabilidades; cada expansión genera
+  `max(width, branch)` hijos y los que no caben van a una reserva que se usa al vaciarse
+  el haz (retroceso). Se para cuando ninguna rama del haz puede superar a la mejor
+  completa. `is_done` con umbral solo en scripts; las funciones terminan con `return`.
+- El oráculo necesita saber en qué punto de la solución está cada rama. El estado que
+  recibe el chooser es un `str` (`StateText`) con un atributo `decisions` que el chooser
+  real ignora; el oráculo casa su secuencia objetivo como subsecuencia.
+- Rendimiento: ~0,6 s por tarea con el oráculo tras cachear hash de TypeRef, ancestros,
+  casados con tipos sin variables y candidatos por perfil de tipos del scope.

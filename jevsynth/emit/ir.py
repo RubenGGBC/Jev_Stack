@@ -36,9 +36,12 @@ class ListComp:
     cond: Expr | None = None
 
 
+CURRENT_HOLE = "⟨?⟩"
+
+
 @dataclass
 class HoleExpr:
-    pass
+    current: bool = False  # el hueco que se está decidiendo ahora (se emite como ⟨?⟩)
 
 
 Expr = Name | Const | Call | ListComp | HoleExpr
@@ -87,7 +90,7 @@ class If:
 
 @dataclass
 class HoleStmt:
-    pass
+    current: bool = False
 
 
 Stmt = Assign | ExprStmt | Return | Print | For | With | If | HoleStmt

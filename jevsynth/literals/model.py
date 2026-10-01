@@ -15,6 +15,9 @@ class LiteralValue:
     value: str | int | float
     source: LiteralSource
 
+    def __deepcopy__(self, memo: dict[int, object]) -> LiteralValue:
+        return self
+
     @property
     def type(self) -> TypeRef:
         return literal(self.value)

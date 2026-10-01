@@ -1,3 +1,4 @@
-from jevsynth.synth.loop import Step, SynthResult, build_state, synthesize
+from jevsynth.synth.engine import SynthConfig, SynthTask
+from jevsynth.synth.search import SynthResult, synthesize
 
-__all__ = ["Step", "SynthResult", "build_state", "synthesize"]
+__all__ = ["SynthConfig", "SynthResult", "SynthTask", "synthesize"]

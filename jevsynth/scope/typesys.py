@@ -31,6 +31,8 @@ class TypeSystem:
     def __init__(self, classes: Mapping[str, ClassInfo]) -> None:
         self.classes = dict(classes)
         self._supers_cache: dict[TypeRef, tuple[TypeRef, ...]] = {}
+        self._ancestors_cache: dict[TypeRef, tuple[TypeRef, ...]] = {}
+        self._ground_cache: dict[tuple[TypeRef, TypeRef, bool], bool] = {}
 
     # -- jerarquía -----------------------------------------------------------------
 
@@ -49,6 +51,24 @@ class TypeSystem:
         out.extend(PROMOTIONS.get(t.name, ()))
         result = tuple(out)
         self._supers_cache[t] = result
+        return result
+
+    def ancestors(self, t: TypeRef) -> tuple[TypeRef, ...]:
+        """`t` y todos sus supertipos en orden de anchura (el más cercano primero)."""
+        cached = self._ancestors_cache.get(t)
+        if cached is not None:
+            return cached
+        seen: set[TypeRef] = {t}
+        out = [t]
+        i = 0
+        while i < len(out) and len(out) < 200:
+            for s in self.supertypes(out[i]):
+                if s not in seen:
+                    seen.add(s)
+                    out.append(s)
+            i += 1
+        result = tuple(out)
+        self._ancestors_cache[t] = result
         return result
 
     def is_subtype(self, actual: TypeRef, formal: TypeRef) -> bool:
@@ -85,6 +105,19 @@ class TypeSystem:
         """
         if depth > _MAX_DEPTH:
             return None
+        if formal.is_ground:
+            # Sin variables en `formal`, el resultado no depende de las ligaduras.
+            key = (actual, formal, shallow)
+            hit = self._ground_cache.get(key)
+            if hit is None:
+                hit = self._match(actual, formal, {}, depth, shallow) is not None
+                self._ground_cache[key] = hit
+            return b if hit else None
+        return self._match(actual, formal, b, depth, shallow)
+
+    def _match(
+        self, actual: TypeRef, formal: TypeRef, b: Bindings, depth: int, shallow: bool
+    ) -> Bindings | None:
         d = depth + 1
         if actual.name in _UNFILLABLE or formal.name in _UNFILLABLE:
             return b if actual.name == formal.name and actual.name != "Never" else None
@@ -140,18 +173,11 @@ class TypeSystem:
         return {**b, formal.name: actual}
 
     def _match_nominal(self, actual: TypeRef, formal: TypeRef, b: Bindings, d: int) -> Bindings | None:
-        seen: set[TypeRef] = {actual}
-        queue = [actual]
-        while queue:
-            t = queue.pop(0)
+        for t in self.ancestors(actual):
             if t.name == formal.name:
                 # El supertipo más cercano decide: TextIOWrapper itera str aunque una base
                 # lejana (_IOBase) declare Iterator[bytes].
                 return self._match_args(t, formal, b, d)
-            for s in self.supertypes(t):
-                if s not in seen:
-                    seen.add(s)
-                    queue.append(s)
         info = self.classes.get(formal.name)
         if info is not None and info.protocol and info.supers:
             # Protocolo compuesto (p. ej. _SupportsSumWithNoDefaultGiven): cumplir todos sus supertipos.
