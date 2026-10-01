@@ -68,6 +68,7 @@ class Searcher:
                 if not self.eng.run_auto(work, t):
                     return []
                 continue
+            done_state = None
             if (
                 isinstance(t, StmtTask)
                 and t.where == "top"
@@ -76,18 +77,14 @@ class Searcher:
             ):
                 if work.steps >= self.task.max_steps:
                     return [self._finish(work, t)]
+                # La pregunta de parada viaja en la misma petición que la siguiente elección.
                 done_state = format_state(
                     self.task.prompt, DONE_HOLE, self.eng.summary(work, t), work.decisions
                 )
-                p = self.asker.is_done(done_state)
-                if p >= self.config.done_threshold:
-                    work.score += logp(p)
-                    return [self._finish(work, t)]
-                work.score += logp(1 - p)
             opts = self.eng.options(work, t)
-            if not opts:
+            if not opts and done_state is None:
                 return []
-            if len(opts) == 1:
+            if len(opts) == 1 and done_state is None:
                 work.agenda.pop(0)
                 if not self.eng.apply(work, t, opts[0]):
                     return []
@@ -97,7 +94,15 @@ class Searcher:
                 raise ValueError(f"opciones con id repetido en {self.eng.hole_text(t)!r}")
             state = self.state_text(work, t)
             n = max(self.config.width, self.config.branch)
-            ranked = self.asker.rank(state, self.eng.hole_text(t), [c.option for c in opts], n)
+            ranked, p_done = self.asker.rank(
+                state, self.eng.hole_text(t), [c.option for c in opts], n, done_state
+            )
+            if p_done is not None:
+                assert isinstance(t, StmtTask)
+                if p_done >= self.config.done_threshold or not opts:
+                    work.score += logp(p_done)
+                    return [self._finish(work, t)]
+                work.score += logp(1 - p_done)
             kids: list[SearchState] = []
             for opt, p in ranked[:n]:
                 child = work.clone()

@@ -85,3 +85,25 @@
   real ignora; el oráculo casa su secuencia objetivo como subsecuencia.
 - Rendimiento: ~0,6 s por tarea con el oráculo tras cachear hash de TypeRef, ancestros,
   casados con tipos sin variables y candidatos por perfil de tipos del scope.
+
+## Fase 6
+
+- La web de documentación (docs.typesafe.ai) y la API (api.typesafe.ai) no son
+  accesibles desde este entorno (proxy). La API se ha leído del SDK publicado en PyPI
+  (`typesafe-sdk` 0.7.2): `TypeSafeClient.system_one(state, questions)` con preguntas
+  `Choice` (probabilidades por criterio) y `Noul` (sí/no; el nombre es literal). Clave en
+  `TYPESAFE_API_KEY`, URL en `TYPESAFE_BASE_URL`, modelo por defecto `jev-latest`.
+- Estado enviado: JSON `{"tarea", "programa"}`; el hueco va en las instrucciones de cada
+  pregunta. Así varias preguntas comparten estado y van en una sola petición: las
+  elecciones dentro de los mejores grupos y, en scripts, la pregunta de parada junto con
+  la siguiente instrucción.
+- Claves de los criterios configurables (`criteria_style`): `id` (por defecto, el id del
+  componente con la etiqueta como descripción), `label` o `letter` (A, B, C...). Es una de
+  las variantes de redacción a evaluar con Jev real.
+- Reintentos con backoff y timeout: los del SDK (`RetryPolicy`). Caché LRU por
+  (tarea, programa, hueco, opciones).
+- Tests sin red con `httpx2.MockTransport` sobre el SDK real. Los tests con Jev real
+  (`pytest -m jev`) no se han podido ejecutar aquí: sin clave y sin salida a la API.
+- Pendiente: la petición de usar una clave de **Opper**. El SDK de Opper (`opperai`)
+  no expone `system_one`/`Choice`/`Noul` ni probabilidades por opción; falta confirmar
+  cómo da Opper acceso a Jev antes de escribir un adaptador.

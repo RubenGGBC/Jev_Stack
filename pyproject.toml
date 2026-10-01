@@ -11,6 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5", "mypy>=1.10"]
+jev = ["typesafe-sdk>=0.7.2"]
 
 [tool.setuptools.packages.find]
 include = ["jevsynth*"]
