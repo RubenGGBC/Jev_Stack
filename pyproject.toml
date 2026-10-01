@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jevsynth"
+version = "0.0.1"
+description = "Síntesis de código por selección: un modelo de decisión elige, un script construye."
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5", "mypy>=1.10"]
+
+[tool.setuptools.packages.find]
+include = ["jevsynth*"]
+
+[tool.pytest.ini_options]
+testpaths = ["jevsynth/tests"]
+markers = ["jev: tests que llaman a Jev real (excluidos por defecto)"]
+addopts = "-m 'not jev'"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = [
+    "jevsynth.catalog.*",
+    "jevsynth.scope.*",
+    "jevsynth.candidates.*",
+    "jevsynth.synth.*",
+    "jevsynth.chooser.*",
+]
+strict = true
