@@ -23,6 +23,7 @@ from jevsynth.synth.engine import (
 )
 
 DONE_HOLE = "¿el programa ya resuelve la tarea por completo?"
+CLOSING = frozenset({"control:return", "control:end"})
 
 
 @dataclass
@@ -34,6 +35,7 @@ class SynthResult:
     stats: Stats
     decisions: tuple[str, ...]
     literals: list[LiteralValue]
+    steps: int = 0
 
 
 class Searcher:
@@ -103,8 +105,11 @@ class Searcher:
                     work.score += logp(p_done)
                     return [self._finish(work, t)]
                 work.score += logp(1 - p_done)
+            # Las opciones de cierre (return/fin de bloque) siempre generan rama, con su
+            # probabilidad real: si no, un chooser sin señal nunca completa una función.
+            chosen = ranked[:n] + [(o, p) for o, p in ranked[n:] if o.id in CLOSING]
             kids: list[SearchState] = []
-            for opt, p in ranked[:n]:
+            for opt, p in chosen:
                 child = work.clone()
                 ct = child.agenda.pop(0)
                 child.score += logp(p)

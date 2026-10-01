@@ -39,11 +39,13 @@ class EvalTask:
     files: dict[str, str] = field(default_factory=dict)
     oracle: list[str] = field(default_factory=list)
     tags: list[str] = field(default_factory=list)
+    prompt_en: str | None = None  # misma petición en inglés (ablación de idioma)
 
-    def synth_task(self) -> SynthTask:
+    def synth_task(self, lang: str = "es") -> SynthTask:
         params = [(n, TypeRef.parse(t)) for n, t in self.params] if self.params is not None else None
         returns = TypeRef.parse(self.returns) if self.returns else None
-        return SynthTask(self.prompt, params, returns, self.max_steps)
+        prompt = self.prompt_en if lang == "en" and self.prompt_en else self.prompt
+        return SynthTask(prompt, params, returns, self.max_steps)
 
     @staticmethod
     def from_json(d: dict[str, object]) -> EvalTask:
@@ -59,6 +61,7 @@ class EvalTask:
             files={str(k): str(v) for k, v in d.get("files", {}).items()},  # type: ignore[attr-defined]
             oracle=[str(x) for x in d.get("oracle", [])],  # type: ignore[attr-defined]
             tags=[str(x) for x in d.get("tags", [])],  # type: ignore[attr-defined]
+            prompt_en=str(d["prompt_en"]) if d.get("prompt_en") else None,
         )
 
 

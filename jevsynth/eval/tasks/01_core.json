@@ -2,7 +2,13 @@
   {
     "id": "count_words",
     "prompt": "cuenta las palabras del texto",
-    "params": [["text", "str"]],
+    "prompt_en": "count the words in the text",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
     "returns": "int",
     "tests": [
       "assert solve('hola que tal') == 3",
@@ -10,29 +16,69 @@
       "assert solve('  uno   dos ') == 2"
     ],
     "max_steps": 4,
-    "oracle": ["builtins.str.split", "sym:text", "builtins.len", "sym:items", "control:return", "sym:n"],
-    "tags": ["fase5"]
+    "oracle": [
+      "builtins.str.split",
+      "sym:text",
+      "builtins.len",
+      "sym:items",
+      "control:return",
+      "sym:n"
+    ],
+    "tags": [
+      "fase5"
+    ]
   },
   {
     "id": "mean_age",
     "prompt": "lee el CSV de la ruta dada y calcula la media de la columna age",
-    "params": [["path", "str"]],
+    "prompt_en": "read the CSV at the given path and compute the mean of the age column",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
     "returns": "float",
-    "files": {"people.csv": "name,age\nana,30\nluis,40\neva,20\n"},
-    "tests": ["assert solve('people.csv') == 30"],
+    "files": {
+      "people.csv": "name,age\nana,30\nluis,40\neva,20\n"
+    },
+    "tests": [
+      "assert solve('people.csv') == 30"
+    ],
     "max_steps": 6,
     "oracle": [
-      "control:with", "builtins.open", "sym:path", "csv.DictReader@1", "sym:f",
-      "control:listcomp", "sym:reader", "builtins.float+x", "operator.getitem@map", "sym:row",
-      "lit:'age'", "control:nofilter", "control:end", "statistics.mean", "sym:values",
-      "control:return", "sym:value"
+      "control:with",
+      "builtins.open",
+      "sym:path",
+      "csv.DictReader@1",
+      "sym:f",
+      "control:listcomp",
+      "sym:reader",
+      "builtins.float+x",
+      "operator.getitem@map",
+      "sym:row",
+      "lit:'age'",
+      "control:nofilter",
+      "control:end",
+      "statistics.mean",
+      "sym:values",
+      "control:return",
+      "sym:value"
     ],
-    "tags": ["fase5"]
+    "tags": [
+      "fase5"
+    ]
   },
   {
     "id": "top3_words",
     "prompt": "devuelve las 3 palabras más frecuentes del texto con su número de apariciones",
-    "params": [["text", "str"]],
+    "prompt_en": "return the 3 most common words in the text with their counts",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
     "returns": "list[tuple[str, int]]",
     "tests": [
       "assert solve('a b a c a b d') == [('a', 3), ('b', 2), ('c', 1)]",
@@ -40,37 +86,84 @@
     ],
     "max_steps": 5,
     "oracle": [
-      "builtins.str.split", "sym:text", "collections.Counter@3", "sym:items",
-      "collections.Counter.most_common+n", "sym:counts", "lit:3", "control:return", "sym:pairs"
+      "builtins.str.split",
+      "sym:text",
+      "collections.Counter@3",
+      "sym:items",
+      "collections.Counter.most_common+n",
+      "sym:counts",
+      "lit:3",
+      "control:return",
+      "sym:pairs"
     ],
-    "tags": ["fase5"]
+    "tags": [
+      "fase5"
+    ]
   },
   {
     "id": "count_error_lines",
     "prompt": "cuenta cuántas líneas del fichero contienen \"ERROR\"",
-    "params": [["path", "str"]],
+    "prompt_en": "count how many lines of the file contain \"ERROR\"",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
     "returns": "int",
-    "files": {"app.log": "INFO ok\nERROR disco\nWARN algo\nERROR red\n"},
-    "tests": ["assert solve('app.log') == 2"],
+    "files": {
+      "app.log": "INFO ok\nERROR disco\nWARN algo\nERROR red\n"
+    },
+    "tests": [
+      "assert solve('app.log') == 2"
+    ],
     "max_steps": 5,
     "oracle": [
-      "control:with", "builtins.open", "sym:path", "control:listcomp", "sym:f", "sym:line",
-      "operator.contains", "sym:line", "lit:'ERROR'", "control:end", "builtins.len", "sym:items",
-      "control:return", "sym:n"
+      "control:with",
+      "builtins.open",
+      "sym:path",
+      "control:listcomp",
+      "sym:f",
+      "sym:line",
+      "operator.contains",
+      "sym:line",
+      "lit:'ERROR'",
+      "control:end",
+      "builtins.len",
+      "sym:items",
+      "control:return",
+      "sym:n"
     ],
-    "tags": ["fase5"]
+    "tags": [
+      "fase5"
+    ]
   },
   {
     "id": "sum_numbers_script",
     "prompt": "lee numeros.txt y muestra la suma de los números, uno por línea",
-    "files": {"numeros.txt": "1.5\n2\n3.5\n"},
+    "prompt_en": "read numeros.txt and print the sum of the numbers, one per line",
+    "files": {
+      "numeros.txt": "1.5\n2\n3.5\n"
+    },
     "stdout": "7.0",
     "max_steps": 5,
     "oracle": [
-      "control:with", "builtins.open", "lit:'numeros.txt'", "control:listcomp", "sym:f",
-      "builtins.float+x", "sym:line", "control:nofilter", "control:end", "builtins.sum@1",
-      "sym:values", "control:print", "sym:result"
+      "control:with",
+      "builtins.open",
+      "lit:'numeros.txt'",
+      "control:listcomp",
+      "sym:f",
+      "builtins.float+x",
+      "sym:line",
+      "control:nofilter",
+      "control:end",
+      "builtins.sum@1",
+      "sym:values",
+      "control:print",
+      "sym:result"
     ],
-    "tags": ["fase5"]
+    "tags": [
+      "fase5"
+    ]
   }
 ]

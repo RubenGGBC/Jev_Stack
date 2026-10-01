@@ -567,6 +567,8 @@ class StubIndex:
                 out.append(TypeRef("_SupportsRound2" if with_digits else "_SupportsRound1", (r,)))
         if "__contains__" in meths:
             out.append(TypeRef("Container", (TypeRef(ANY),)))
+        if "__hash__" in meths:  # las no hashables declaran `__hash__: ClassVar[None]`
+            out.append(TypeRef("Hashable"))
         if "__buffer__" in meths:
             out.append(TypeRef("Buffer"))
         if (rd := ret("read")) is not None:
@@ -619,6 +621,9 @@ class StubIndex:
                     kind,
                 )
             )
+        if a.vararg is not None and a.vararg.annotation is not None:
+            # `*args: T` se modela como un parámetro posicional opcional más (variante +args).
+            params.append(Param(a.vararg.arg, self.to_type(a.vararg.annotation, module, ctx), True, "pos"))
         for arg, default in zip(a.kwonlyargs, a.kw_defaults, strict=True):
             params.append(
                 Param(arg.arg, self.to_type(arg.annotation, module, ctx), default is not None, "kw")

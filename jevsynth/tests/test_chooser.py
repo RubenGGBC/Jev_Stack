@@ -73,3 +73,33 @@ def test_random_is_done_fixed_or_random() -> None:
     assert RandomChooser(seed=1, done_prob=0.3).is_done("s") == 0.3
     p = RandomChooser(seed=1).is_done("s")
     assert 0.0 <= p <= 1.0
+
+
+def test_oracle_follows_target_as_subsequence() -> None:
+    from jevsynth.chooser import OracleChooser, StateText
+
+    o = OracleChooser(["toy.read_text", "toy.count_items"])
+    first = o.choose(StateText("s", ()), OPTS)
+    assert first[0][0].id == "toy.read_text"
+    # Decisiones no previstas en el objetivo se ignoran al casar.
+    nxt = o.choose(StateText("s", ("sym:path", "toy.read_text", "sym:text")), OPTS)
+    assert nxt[0][0].id == "toy.count_items"
+    assert o.is_done(StateText("s", ("toy.read_text", "toy.count_items"))) > 0.5
+    assert o.is_done(StateText("s", ("toy.read_text",))) < 0.5
+    group = Option("group:toy", "toy", "group", members=("toy.read_text",))
+    assert o.choose(StateText("s", ()), [OPTS[2], group])[0][0].id == "group:toy"
+
+
+def test_noisy_oracle_accuracy_and_determinism() -> None:
+    from jevsynth.chooser import NoisyOracleChooser, StateText
+
+    hits = 0
+    for i in range(400):
+        o = NoisyOracleChooser(["toy.to_upper"], accuracy=0.75, seed=i)
+        ranked = o.choose(StateText(f"s{i}", ()), OPTS)
+        _check_distribution(ranked, OPTS)
+        hits += ranked[0][0].id == "toy.to_upper"
+        assert ranked == o.choose(StateText(f"s{i}", ()), OPTS)
+    assert 0.65 < hits / 400 < 0.85
+    perfect = NoisyOracleChooser(["toy.to_upper"], accuracy=1.0)
+    assert perfect.choose(StateText("x", ()), OPTS)[0][0].id == "toy.to_upper"

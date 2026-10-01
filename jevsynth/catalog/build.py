@@ -123,7 +123,7 @@ class Builder:
         stub_module = self._defining_module(module, name)
         for k, fn in enumerate(fs.nodes):
             params, returns, _ = self.ix.signature(fn, stub_module, None)
-            params = tuple(p for p in params if p.name not in {"args", "kwargs"} or p.has_default)
+            params = tuple(p for p in params if p.name != "kwargs")
             self._emit(
                 qualname=f"{module}.{name}",
                 params=params,

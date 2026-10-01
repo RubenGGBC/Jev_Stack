@@ -183,6 +183,18 @@ class _TypeParser:
         return TypeRef(name, tuple(args))
 
 
+def short_type(t: TypeRef, max_literals: int = 4) -> str:
+    """Forma textual compacta para etiquetas: abrevia Literal con muchos valores."""
+    if t.name == LITERAL and len(t.args) > max_literals:
+        shown = ", ".join(a.name for a in t.args[:max_literals])
+        return f"Literal[{shown}, …]"
+    if t.name == UNION:
+        return " | ".join(short_type(a, max_literals) for a in t.args)
+    if t.args and not t.is_var and t.name != LITERAL:
+        return f"{t.name}[{', '.join(short_type(a, max_literals) for a in t.args)}]"
+    return str(t)
+
+
 ParamKind = Literal["pos", "pos_kw", "kw"]
 ComponentKind = Literal[
     "function", "constructor", "method", "property", "classmethod", "staticmethod", "operator"
@@ -239,8 +251,8 @@ class Component:
         return self.qualname.rsplit(".", 1)[-1]
 
     def signature(self) -> str:
-        args = ", ".join(f"{p.name}: {p.type}" for p in self.required_params)
-        return f"{self.display_name}({args}) -> {self.returns}"
+        args = ", ".join(f"{p.name}: {short_type(p.type)}" for p in self.required_params)
+        return f"{self.display_name}({args}) -> {short_type(self.returns)}"
 
     def is_typed(self) -> bool:
         """Firma tipada: ningún parámetro obligatorio ni el retorno son `Any` sin más."""

@@ -24,6 +24,8 @@ def test_phase3_criterion() -> None:
         ("separa el texto por «;»", [";"]),
         ("lee config/app.json y devuelve la clave `port`", ["config/app.json", "port"]),
         ("ordena la lista", []),
+        ("muestra la suma de los números", []),  # no cortar "números" en "n"
+        ("print the sum of the numbers", []),
     ],
 )
 def test_extraction(text: str, expected: list[object]) -> None:
@@ -49,3 +51,11 @@ def test_control_options_are_fixed() -> None:
         opt = control_option(k)
         assert opt.kind == "control" and control_kind(opt.id) == k
     assert control_kind("csv.reader") is None
+
+
+def test_same_literals_in_both_languages() -> None:
+    from jevsynth.eval.tasks import load_tasks
+
+    for t in load_tasks():
+        assert t.prompt_en, t.id
+        assert _vals(t.prompt) == _vals(t.prompt_en), t.id

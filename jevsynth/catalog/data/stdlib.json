@@ -2260,7 +2260,36 @@
    "kind": "constructor",
    "module": "",
    "group": "builtins",
-   "params": [],
+   "params": [
+    [
+     "args",
+     "Any",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "dict",
+    "~_KT",
+    "~_VT"
+   ],
+   "summary": "(key, value) pairs dict(iterable) - new dictionary initialized as if via: d = for k, v in iterable: dk = v…",
+   "doc": "(key, value) pairs dict(iterable) - new dictionary initialized as if via: d = for k, v in iterable: dk = v dict(kwargs) - new dictionary initialized with the name=value pairs in the keyword argument list. For example: dict(one=1, two=2)"
+  },
+  {
+   "id": "builtins.dict+args",
+   "qualname": "builtins.dict",
+   "kind": "constructor",
+   "module": "",
+   "group": "builtins",
+   "params": [
+    [
+     "args",
+     "Any",
+     false,
+     "pos"
+    ]
+   ],
    "returns": [
     "dict",
     "~_KT",
@@ -3158,6 +3187,48 @@
      ],
      false,
      "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "frozenset",
+    "~_T_co"
+   ],
+   "summary": "Return the difference of two or more sets as a new set.",
+   "doc": "Return the difference of two or more sets as a new set. (i.e. all elements that are in this set but not the others.)"
+  },
+  {
+   "id": "builtins.frozenset.difference+s",
+   "qualname": "builtins.frozenset.difference",
+   "kind": "method",
+   "module": "",
+   "group": "frozenset",
+   "params": [
+    [
+     "self",
+     [
+      "frozenset",
+      "~_T_co"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": [
@@ -3179,6 +3250,48 @@
      [
       "frozenset",
       "~_T_co"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "frozenset",
+    "~_T_co"
+   ],
+   "summary": "Return the intersection of two sets as a new set.",
+   "doc": "Return the intersection of two sets as a new set. (i.e. all elements that are in both sets.)"
+  },
+  {
+   "id": "builtins.frozenset.intersection+s",
+   "qualname": "builtins.frozenset.intersection",
+   "kind": "method",
+   "module": "",
+   "group": "frozenset",
+   "params": [
+    [
+     "self",
+     [
+      "frozenset",
+      "~_T_co"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
      ],
      false,
      "pos"
@@ -3330,6 +3443,52 @@
      [
       "frozenset",
       "~_T_co"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "~_S"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "frozenset",
+    [
+     "Union",
+     "~_T_co",
+     "~_S"
+    ]
+   ],
+   "summary": "Return the union of sets as a new set.",
+   "doc": "Return the union of sets as a new set. (i.e. all elements that are in either set.)"
+  },
+  {
+   "id": "builtins.frozenset.union+s",
+   "qualname": "builtins.frozenset.union",
+   "kind": "method",
+   "module": "",
+   "group": "frozenset",
+   "params": [
+    [
+     "self",
+     [
+      "frozenset",
+      "~_T_co"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "~_S"
      ],
      false,
      "pos"
@@ -4616,6 +4775,99 @@
      ],
      false,
      "pos"
+    ],
+    [
+     "iterables",
+     [
+      "Iterable",
+      "Any"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "map",
+    "~_S"
+   ],
+   "summary": "map object",
+   "doc": "map object Make an iterator that computes the function using arguments from each of the iterables. Stops when the shortest iterable is exhausted."
+  },
+  {
+   "id": "builtins.map@5+iterables",
+   "qualname": "builtins.map",
+   "kind": "constructor",
+   "module": "",
+   "group": "builtins",
+   "params": [
+    [
+     "func",
+     "Callable",
+     false,
+     "pos"
+    ],
+    [
+     "iterable",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter2",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter3",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter4",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter5",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter6",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iterables",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": [
@@ -4653,6 +4905,113 @@
     ],
     [
      "arg2",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "_args",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     true,
+     "pos"
+    ],
+    [
+     "key",
+     "None",
+     true,
+     "kw"
+    ]
+   ],
+   "returns": [
+    "~SupportsRichComparisonT",
+    [
+     "Union",
+     [
+      "SupportsDunderLT",
+      "Any"
+     ],
+     [
+      "SupportsDunderGT",
+      "Any"
+     ]
+    ]
+   ],
+   "summary": "With a single iterable argument, return its biggest item.",
+   "doc": "With a single iterable argument, return its biggest item. The default keyword-only argument specifies an object to return if the provided iterable is empty. With two or more arguments, return the largest argument."
+  },
+  {
+   "id": "builtins.max+_args",
+   "qualname": "builtins.max",
+   "kind": "function",
+   "module": "",
+   "group": "builtins",
+   "params": [
+    [
+     "arg1",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "arg2",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "_args",
      [
       "~SupportsRichComparisonT",
       [
@@ -4709,6 +5068,48 @@
     ],
     [
      "arg2",
+     "~_T",
+     false,
+     "pos"
+    ],
+    [
+     "_args",
+     "~_T",
+     true,
+     "pos"
+    ],
+    [
+     "key",
+     "Callable",
+     false,
+     "kw"
+    ]
+   ],
+   "returns": "~_T",
+   "summary": "With a single iterable argument, return its biggest item.",
+   "doc": "With a single iterable argument, return its biggest item. The default keyword-only argument specifies an object to return if the provided iterable is empty. With two or more arguments, return the largest argument."
+  },
+  {
+   "id": "builtins.max@1+_args",
+   "qualname": "builtins.max",
+   "kind": "function",
+   "module": "",
+   "group": "builtins",
+   "params": [
+    [
+     "arg1",
+     "~_T",
+     false,
+     "pos"
+    ],
+    [
+     "arg2",
+     "~_T",
+     false,
+     "pos"
+    ],
+    [
+     "_args",
      "~_T",
      false,
      "pos"
@@ -4950,6 +5351,113 @@
      "pos"
     ],
     [
+     "_args",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     true,
+     "pos"
+    ],
+    [
+     "key",
+     "None",
+     true,
+     "kw"
+    ]
+   ],
+   "returns": [
+    "~SupportsRichComparisonT",
+    [
+     "Union",
+     [
+      "SupportsDunderLT",
+      "Any"
+     ],
+     [
+      "SupportsDunderGT",
+      "Any"
+     ]
+    ]
+   ],
+   "summary": "With a single iterable argument, return its smallest item.",
+   "doc": "With a single iterable argument, return its smallest item. The default keyword-only argument specifies an object to return if the provided iterable is empty. With two or more arguments, return the smallest argument."
+  },
+  {
+   "id": "builtins.min+_args",
+   "qualname": "builtins.min",
+   "kind": "function",
+   "module": "",
+   "group": "builtins",
+   "params": [
+    [
+     "arg1",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "arg2",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "_args",
+     [
+      "~SupportsRichComparisonT",
+      [
+       "Union",
+       [
+        "SupportsDunderLT",
+        "Any"
+       ],
+       [
+        "SupportsDunderGT",
+        "Any"
+       ]
+      ]
+     ],
+     false,
+     "pos"
+    ],
+    [
      "key",
      "None",
      true,
@@ -4988,6 +5496,48 @@
     ],
     [
      "arg2",
+     "~_T",
+     false,
+     "pos"
+    ],
+    [
+     "_args",
+     "~_T",
+     true,
+     "pos"
+    ],
+    [
+     "key",
+     "Callable",
+     false,
+     "kw"
+    ]
+   ],
+   "returns": "~_T",
+   "summary": "With a single iterable argument, return its smallest item.",
+   "doc": "With a single iterable argument, return its smallest item. The default keyword-only argument specifies an object to return if the provided iterable is empty. With two or more arguments, return the smallest argument."
+  },
+  {
+   "id": "builtins.min@1+_args",
+   "qualname": "builtins.min",
+   "kind": "function",
+   "module": "",
+   "group": "builtins",
+   "params": [
+    [
+     "arg1",
+     "~_T",
+     false,
+     "pos"
+    ],
+    [
+     "arg2",
+     "~_T",
+     false,
+     "pos"
+    ],
+    [
+     "_args",
      "~_T",
      false,
      "pos"
@@ -7671,6 +8221,48 @@
      ],
      false,
      "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "set",
+    "~_T"
+   ],
+   "summary": "Return the difference of two or more sets as a new set.",
+   "doc": "Return the difference of two or more sets as a new set. (i.e. all elements that are in this set but not the others.)"
+  },
+  {
+   "id": "builtins.set.difference+s",
+   "qualname": "builtins.set.difference",
+   "kind": "method",
+   "module": "",
+   "group": "set",
+   "params": [
+    [
+     "self",
+     [
+      "set",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": [
@@ -7692,6 +8284,45 @@
      [
       "set",
       "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "None",
+   "summary": "Remove all elements of another set from this set.",
+   "doc": "Remove all elements of another set from this set."
+  },
+  {
+   "id": "builtins.set.difference_update+s",
+   "qualname": "builtins.set.difference_update",
+   "kind": "method",
+   "module": "",
+   "group": "set",
+   "params": [
+    [
+     "self",
+     [
+      "set",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
      ],
      false,
      "pos"
@@ -7743,6 +8374,48 @@
      ],
      false,
      "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "set",
+    "~_T"
+   ],
+   "summary": "Return the intersection of two sets as a new set.",
+   "doc": "Return the intersection of two sets as a new set. (i.e. all elements that are in both sets.)"
+  },
+  {
+   "id": "builtins.set.intersection+s",
+   "qualname": "builtins.set.intersection",
+   "kind": "method",
+   "module": "",
+   "group": "set",
+   "params": [
+    [
+     "self",
+     [
+      "set",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": [
@@ -7764,6 +8437,45 @@
      [
       "set",
       "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "None",
+   "summary": "Update a set with the intersection of itself and another.",
+   "doc": "Update a set with the intersection of itself and another."
+  },
+  {
+   "id": "builtins.set.intersection_update+s",
+   "qualname": "builtins.set.intersection_update",
+   "kind": "method",
+   "module": "",
+   "group": "set",
+   "params": [
+    [
+     "self",
+     [
+      "set",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "object"
      ],
      false,
      "pos"
@@ -7972,6 +8684,52 @@
      ],
      false,
      "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "~_S"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "set",
+    [
+     "Union",
+     "~_T",
+     "~_S"
+    ]
+   ],
+   "summary": "Return the union of sets as a new set.",
+   "doc": "Return the union of sets as a new set. (i.e. all elements that are in either set.)"
+  },
+  {
+   "id": "builtins.set.union+s",
+   "qualname": "builtins.set.union",
+   "kind": "method",
+   "module": "",
+   "group": "set",
+   "params": [
+    [
+     "self",
+     [
+      "set",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "~_S"
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": [
@@ -7996,6 +8754,45 @@
      "self",
      [
       "set",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "None",
+   "summary": "Update a set with the union of itself and others.",
+   "doc": "Update a set with the union of itself and others."
+  },
+  {
+   "id": "builtins.set.update+s",
+   "qualname": "builtins.set.update",
+   "kind": "method",
+   "module": "",
+   "group": "set",
+   "params": [
+    [
+     "self",
+     [
+      "set",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "s",
+     [
+      "Iterable",
       "~_T"
      ],
      false,
@@ -8694,6 +9491,36 @@
     [
      "self",
      "str",
+     false,
+     "pos"
+    ],
+    [
+     "args",
+     "object",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "str",
+   "summary": "Return a formatted version of S, using substitutions from args and kwargs.",
+   "doc": "Return a formatted version of S, using substitutions from args and kwargs. The substitutions are identified by braces ('' and '')."
+  },
+  {
+   "id": "builtins.str.format+args",
+   "qualname": "builtins.str.format",
+   "kind": "method",
+   "module": "",
+   "group": "str",
+   "params": [
+    [
+     "self",
+     "str",
+     false,
+     "pos"
+    ],
+    [
+     "args",
+     "object",
      false,
      "pos"
     ]
@@ -10874,6 +11701,103 @@
     ],
     [
      "iter6",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iterables",
+     [
+      "Iterable",
+      "Any"
+     ],
+     true,
+     "pos"
+    ],
+    [
+     "strict",
+     "bool",
+     true,
+     "kw"
+    ]
+   ],
+   "returns": [
+    "zip",
+    [
+     "tuple",
+     "Any",
+     "..."
+    ]
+   ],
+   "summary": "Yield tuples until an input is exhausted.",
+   "doc": "Yield tuples until an input is exhausted. list(zip('abcdefg', range(3), range(4))) ('a', 0, 0), ('b', 1, 1), ('c', 2, 2)"
+  },
+  {
+   "id": "builtins.zip@6+iterables",
+   "qualname": "builtins.zip",
+   "kind": "constructor",
+   "module": "",
+   "group": "builtins",
+   "params": [
+    [
+     "iter1",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter2",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter3",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter4",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter5",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter6",
+     [
+      "Iterable",
+      "Any"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iterables",
      [
       "Iterable",
       "Any"
@@ -13982,7 +14906,46 @@
    "kind": "constructor",
    "module": "pathlib",
    "group": "pathlib",
-   "params": [],
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.Path",
+   "summary": "pathlib.Path (constructor).",
+   "doc": "pathlib.Path (constructor)."
+  },
+  {
+   "id": "pathlib.Path+args",
+   "qualname": "pathlib.Path",
+   "kind": "constructor",
+   "module": "pathlib",
+   "group": "pathlib",
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": "pathlib.Path",
    "summary": "pathlib.Path (constructor).",
    "doc": "pathlib.Path (constructor)."
@@ -16411,6 +17374,50 @@
      "pathlib.Path",
      false,
      "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "bool",
+   "summary": "Return True if the path is relative to another path or False.",
+   "doc": "Return True if the path is relative to another path or False."
+  },
+  {
+   "id": "pathlib.Path.is_relative_to+other",
+   "qualname": "pathlib.Path.is_relative_to",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.Path",
+   "params": [
+    [
+     "self",
+     "pathlib.Path",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": "bool",
@@ -16451,6 +17458,50 @@
     [
      "self",
      "pathlib.Path",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.Path",
+   "summary": "Return the relative path to another path identified by the passed arguments.",
+   "doc": "Return the relative path to another path identified by the passed arguments. If the operation is not possible (because this is not a subpath of the other path), raise ValueError."
+  },
+  {
+   "id": "pathlib.Path.relative_to+other",
+   "qualname": "pathlib.Path.relative_to",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.Path",
+   "params": [
+    [
+     "self",
+     "pathlib.Path",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
      false,
      "pos"
     ]
@@ -16543,6 +17594,50 @@
      "pathlib.Path",
      false,
      "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.Path",
+   "summary": "Combine this path with one or several arguments, and return a new path representing either a subpath (if all arguments…",
+   "doc": "Combine this path with one or several arguments, and return a new path representing either a subpath (if all arguments are relative paths) or a totally different path (if one of the arguments is anchored)."
+  },
+  {
+   "id": "pathlib.Path.joinpath+other",
+   "qualname": "pathlib.Path.joinpath",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.Path",
+   "params": [
+    [
+     "self",
+     "pathlib.Path",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": "pathlib.Path",
@@ -16594,7 +17689,46 @@
    "kind": "constructor",
    "module": "pathlib",
    "group": "pathlib",
-   "params": [],
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PosixPath",
+   "summary": "pathlib.PosixPath (constructor).",
+   "doc": "pathlib.PosixPath (constructor)."
+  },
+  {
+   "id": "pathlib.PosixPath+args",
+   "qualname": "pathlib.PosixPath",
+   "kind": "constructor",
+   "module": "pathlib",
+   "group": "pathlib",
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": "pathlib.PosixPath",
    "summary": "pathlib.PosixPath (constructor).",
    "doc": "pathlib.PosixPath (constructor)."
@@ -16834,6 +17968,50 @@
      "pathlib.PosixPath",
      false,
      "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "bool",
+   "summary": "Return True if the path is relative to another path or False.",
+   "doc": "Return True if the path is relative to another path or False."
+  },
+  {
+   "id": "pathlib.PosixPath.is_relative_to+other",
+   "qualname": "pathlib.PosixPath.is_relative_to",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.PosixPath",
+   "params": [
+    [
+     "self",
+     "pathlib.PosixPath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": "bool",
@@ -16874,6 +18052,50 @@
     [
      "self",
      "pathlib.PosixPath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PosixPath",
+   "summary": "Return the relative path to another path identified by the passed arguments.",
+   "doc": "Return the relative path to another path identified by the passed arguments. If the operation is not possible (because this is not a subpath of the other path), raise ValueError."
+  },
+  {
+   "id": "pathlib.PosixPath.relative_to+other",
+   "qualname": "pathlib.PosixPath.relative_to",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.PosixPath",
+   "params": [
+    [
+     "self",
+     "pathlib.PosixPath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
      false,
      "pos"
     ]
@@ -16966,6 +18188,50 @@
      "pathlib.PosixPath",
      false,
      "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PosixPath",
+   "summary": "Combine this path with one or several arguments, and return a new path representing either a subpath (if all arguments…",
+   "doc": "Combine this path with one or several arguments, and return a new path representing either a subpath (if all arguments are relative paths) or a totally different path (if one of the arguments is anchored)."
+  },
+  {
+   "id": "pathlib.PosixPath.joinpath+other",
+   "qualname": "pathlib.PosixPath.joinpath",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.PosixPath",
+   "params": [
+    [
+     "self",
+     "pathlib.PosixPath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": "pathlib.PosixPath",
@@ -17017,7 +18283,46 @@
    "kind": "constructor",
    "module": "pathlib",
    "group": "pathlib",
-   "params": [],
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PurePath",
+   "summary": "Base class for manipulating paths without I/O.",
+   "doc": "Base class for manipulating paths without I/O."
+  },
+  {
+   "id": "pathlib.PurePath+args",
+   "qualname": "pathlib.PurePath",
+   "kind": "constructor",
+   "module": "pathlib",
+   "group": "pathlib",
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": "pathlib.PurePath",
    "summary": "Base class for manipulating paths without I/O.",
    "doc": "Base class for manipulating paths without I/O."
@@ -17257,6 +18562,50 @@
      "pathlib.PurePath",
      false,
      "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "bool",
+   "summary": "Return True if the path is relative to another path or False.",
+   "doc": "Return True if the path is relative to another path or False."
+  },
+  {
+   "id": "pathlib.PurePath.is_relative_to+other",
+   "qualname": "pathlib.PurePath.is_relative_to",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.PurePath",
+   "params": [
+    [
+     "self",
+     "pathlib.PurePath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": "bool",
@@ -17297,6 +18646,50 @@
     [
      "self",
      "pathlib.PurePath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PurePath",
+   "summary": "Return the relative path to another path identified by the passed arguments.",
+   "doc": "Return the relative path to another path identified by the passed arguments. If the operation is not possible (because this is not a subpath of the other path), raise ValueError."
+  },
+  {
+   "id": "pathlib.PurePath.relative_to+other",
+   "qualname": "pathlib.PurePath.relative_to",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.PurePath",
+   "params": [
+    [
+     "self",
+     "pathlib.PurePath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
      false,
      "pos"
     ]
@@ -17389,6 +18782,50 @@
      "pathlib.PurePath",
      false,
      "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PurePath",
+   "summary": "Combine this path with one or several arguments, and return a new path representing either a subpath (if all arguments…",
+   "doc": "Combine this path with one or several arguments, and return a new path representing either a subpath (if all arguments are relative paths) or a totally different path (if one of the arguments is anchored)."
+  },
+  {
+   "id": "pathlib.PurePath.joinpath+other",
+   "qualname": "pathlib.PurePath.joinpath",
+   "kind": "method",
+   "module": "",
+   "group": "pathlib.PurePath",
+   "params": [
+    [
+     "self",
+     "pathlib.PurePath",
+     false,
+     "pos"
+    ],
+    [
+     "other",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": "pathlib.PurePath",
@@ -17440,7 +18877,46 @@
    "kind": "constructor",
    "module": "pathlib",
    "group": "pathlib",
-   "params": [],
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PurePosixPath",
+   "summary": "pathlib.PurePosixPath (constructor).",
+   "doc": "pathlib.PurePosixPath (constructor)."
+  },
+  {
+   "id": "pathlib.PurePosixPath+args",
+   "qualname": "pathlib.PurePosixPath",
+   "kind": "constructor",
+   "module": "pathlib",
+   "group": "pathlib",
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": "pathlib.PurePosixPath",
    "summary": "pathlib.PurePosixPath (constructor).",
    "doc": "pathlib.PurePosixPath (constructor)."
@@ -17451,7 +18927,46 @@
    "kind": "constructor",
    "module": "pathlib",
    "group": "pathlib",
-   "params": [],
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.PureWindowsPath",
+   "summary": "pathlib.PureWindowsPath (constructor).",
+   "doc": "pathlib.PureWindowsPath (constructor)."
+  },
+  {
+   "id": "pathlib.PureWindowsPath+args",
+   "qualname": "pathlib.PureWindowsPath",
+   "kind": "constructor",
+   "module": "pathlib",
+   "group": "pathlib",
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": "pathlib.PureWindowsPath",
    "summary": "pathlib.PureWindowsPath (constructor).",
    "doc": "pathlib.PureWindowsPath (constructor)."
@@ -17462,7 +18977,46 @@
    "kind": "constructor",
    "module": "pathlib",
    "group": "pathlib",
-   "params": [],
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "pathlib.WindowsPath",
+   "summary": "pathlib.WindowsPath (constructor).",
+   "doc": "pathlib.WindowsPath (constructor)."
+  },
+  {
+   "id": "pathlib.WindowsPath+args",
+   "qualname": "pathlib.WindowsPath",
+   "kind": "constructor",
+   "module": "pathlib",
+   "group": "pathlib",
+   "params": [
+    [
+     "args",
+     [
+      "Union",
+      "str",
+      [
+       "os.PathLike",
+       "str"
+      ]
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": "pathlib.WindowsPath",
    "summary": "pathlib.WindowsPath (constructor).",
    "doc": "pathlib.WindowsPath (constructor)."
@@ -17832,6 +19386,75 @@
     ],
     [
      "group2",
+     [
+      "Union",
+      "str",
+      "int"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "groups",
+     [
+      "Union",
+      "str",
+      "int"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "tuple",
+    [
+     "~AnyStr",
+     "str",
+     "bytes"
+    ],
+    "..."
+   ],
+   "summary": "Return subgroup(s) of the match by indices or names.",
+   "doc": "Return subgroup(s) of the match by indices or names. For 0 returns the entire match."
+  },
+  {
+   "id": "re.Match.group@2+groups",
+   "qualname": "re.Match.group",
+   "kind": "method",
+   "module": "",
+   "group": "re.Match",
+   "params": [
+    [
+     "self",
+     [
+      "re.Match",
+      "~AnyStr"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "group1",
+     [
+      "Union",
+      "str",
+      "int"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "group2",
+     [
+      "Union",
+      "str",
+      "int"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "groups",
      [
       "Union",
       "str",
@@ -22316,7 +23939,44 @@
    "kind": "constructor",
    "module": "collections",
    "group": "collections",
-   "params": [],
+   "params": [
+    [
+     "maps",
+     [
+      "MutableMapping",
+      "~_KT",
+      "~_VT"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "collections.ChainMap",
+    "~_KT",
+    "~_VT"
+   ],
+   "summary": "A ChainMap groups multiple dicts (or other mappings) together to create a single, updateable view.",
+   "doc": "A ChainMap groups multiple dicts (or other mappings) together to create a single, updateable view. The underlying mappings are stored in a list. That list is public and can be accessed or updated using the maps attribute. There is no other state."
+  },
+  {
+   "id": "collections.ChainMap+maps",
+   "qualname": "collections.ChainMap",
+   "kind": "constructor",
+   "module": "collections",
+   "group": "collections",
+   "params": [
+    [
+     "maps",
+     [
+      "MutableMapping",
+      "~_KT",
+      "~_VT"
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": [
     "collections.ChainMap",
     "~_KT",
@@ -23304,7 +24964,36 @@
    "kind": "constructor",
    "module": "collections",
    "group": "collections",
-   "params": [],
+   "params": [
+    [
+     "args",
+     "Any",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "collections.OrderedDict",
+    "~_KT",
+    "~_VT"
+   ],
+   "summary": "Dictionary that remembers insertion order",
+   "doc": "Dictionary that remembers insertion order"
+  },
+  {
+   "id": "collections.OrderedDict+args",
+   "qualname": "collections.OrderedDict",
+   "kind": "constructor",
+   "module": "collections",
+   "group": "collections",
+   "params": [
+    [
+     "args",
+     "Any",
+     false,
+     "pos"
+    ]
+   ],
    "returns": [
     "collections.OrderedDict",
     "~_KT",
@@ -24581,6 +26270,42 @@
      "int",
      false,
      "pos_kw"
+    ],
+    [
+     "args",
+     "Any",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "collections.UserString",
+   "summary": "collections.UserString.center (method).",
+   "doc": "collections.UserString.center (method)."
+  },
+  {
+   "id": "collections.UserString.center+args",
+   "qualname": "collections.UserString.center",
+   "kind": "method",
+   "module": "",
+   "group": "collections.UserString",
+   "params": [
+    [
+     "self",
+     "collections.UserString",
+     false,
+     "pos"
+    ],
+    [
+     "width",
+     "int",
+     false,
+     "pos_kw"
+    ],
+    [
+     "args",
+     "Any",
+     false,
+     "pos"
     ]
    ],
    "returns": "collections.UserString",
@@ -24987,6 +26712,36 @@
      "collections.UserString",
      false,
      "pos"
+    ],
+    [
+     "args",
+     "Any",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "str",
+   "summary": "collections.UserString.format (method).",
+   "doc": "collections.UserString.format (method)."
+  },
+  {
+   "id": "collections.UserString.format+args",
+   "qualname": "collections.UserString.format",
+   "kind": "method",
+   "module": "",
+   "group": "collections.UserString",
+   "params": [
+    [
+     "self",
+     "collections.UserString",
+     false,
+     "pos"
+    ],
+    [
+     "args",
+     "Any",
+     false,
+     "pos"
     ]
    ],
    "returns": "str",
@@ -25354,6 +27109,42 @@
      "int",
      false,
      "pos_kw"
+    ],
+    [
+     "args",
+     "Any",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "collections.UserString",
+   "summary": "collections.UserString.ljust (method).",
+   "doc": "collections.UserString.ljust (method)."
+  },
+  {
+   "id": "collections.UserString.ljust+args",
+   "qualname": "collections.UserString.ljust",
+   "kind": "method",
+   "module": "",
+   "group": "collections.UserString",
+   "params": [
+    [
+     "self",
+     "collections.UserString",
+     false,
+     "pos"
+    ],
+    [
+     "width",
+     "int",
+     false,
+     "pos_kw"
+    ],
+    [
+     "args",
+     "Any",
+     false,
+     "pos"
     ]
    ],
    "returns": "collections.UserString",
@@ -25785,6 +27576,42 @@
      "int",
      false,
      "pos_kw"
+    ],
+    [
+     "args",
+     "Any",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "collections.UserString",
+   "summary": "collections.UserString.rjust (method).",
+   "doc": "collections.UserString.rjust (method)."
+  },
+  {
+   "id": "collections.UserString.rjust+args",
+   "qualname": "collections.UserString.rjust",
+   "kind": "method",
+   "module": "",
+   "group": "collections.UserString",
+   "params": [
+    [
+     "self",
+     "collections.UserString",
+     false,
+     "pos"
+    ],
+    [
+     "width",
+     "int",
+     false,
+     "pos_kw"
+    ],
+    [
+     "args",
+     "Any",
+     false,
+     "pos"
     ]
    ],
    "returns": "collections.UserString",
@@ -26284,6 +28111,36 @@
     [
      "self",
      "collections.UserString",
+     false,
+     "pos"
+    ],
+    [
+     "args",
+     "Any",
+     true,
+     "pos"
+    ]
+   ],
+   "returns": "collections.UserString",
+   "summary": "collections.UserString.translate (method).",
+   "doc": "collections.UserString.translate (method)."
+  },
+  {
+   "id": "collections.UserString.translate+args",
+   "qualname": "collections.UserString.translate",
+   "kind": "method",
+   "module": "",
+   "group": "collections.UserString",
+   "params": [
+    [
+     "self",
+     "collections.UserString",
+     false,
+     "pos"
+    ],
+    [
+     "args",
+     "Any",
      false,
      "pos"
     ]
@@ -27262,7 +29119,41 @@
    "kind": "constructor",
    "module": "itertools",
    "group": "itertools",
-   "params": [],
+   "params": [
+    [
+     "iterables",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "itertools.chain",
+    "~_T"
+   ],
+   "summary": "chain object",
+   "doc": "chain object Return a chain object whose .next() method returns elements from the first iterable until it is exhausted, then elements from the next iterable, until all of the iterables are exhausted."
+  },
+  {
+   "id": "itertools.chain+iterables",
+   "qualname": "itertools.chain",
+   "kind": "constructor",
+   "module": "itertools",
+   "group": "itertools",
+   "params": [
+    [
+     "iterables",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ]
+   ],
    "returns": [
     "itertools.chain",
     "~_T"
@@ -29133,6 +31024,49 @@
    "group": "itertools",
    "params": [
     [
+     "iterables",
+     [
+      "Iterable",
+      "~_T1"
+     ],
+     true,
+     "pos"
+    ],
+    [
+     "repeat",
+     "int",
+     true,
+     "kw"
+    ]
+   ],
+   "returns": [
+    "itertools.product",
+    [
+     "tuple",
+     "~_T1",
+     "..."
+    ]
+   ],
+   "summary": "product object",
+   "doc": "product object Cartesian product of input iterables. Equivalent to nested for-loops."
+  },
+  {
+   "id": "itertools.product@10+iterables",
+   "qualname": "itertools.product",
+   "kind": "constructor",
+   "module": "itertools",
+   "group": "itertools",
+   "params": [
+    [
+     "iterables",
+     [
+      "Iterable",
+      "~_T1"
+     ],
+     false,
+     "pos"
+    ],
+    [
      "repeat",
      "int",
      true,
@@ -29918,6 +31852,97 @@
      ],
      false,
      "pos"
+    ],
+    [
+     "iterables",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     true,
+     "pos"
+    ]
+   ],
+   "returns": [
+    "itertools.zip_longest",
+    [
+     "tuple",
+     "~_T",
+     "..."
+    ]
+   ],
+   "summary": "ziplongest object",
+   "doc": "ziplongest object Return a ziplongest object whose .next() method returns a tuple where the i-th element comes from the i-th iterable argument. The .next() method continues until the longest iterable in the argument sequence is exhausted and then it raises StopIteration. When the shorter iterables are exhausted, the fillvalue is substituted in their place. The fillvalue defaults to None or can…"
+  },
+  {
+   "id": "itertools.zip_longest@9+iterables",
+   "qualname": "itertools.zip_longest",
+   "kind": "constructor",
+   "module": "itertools",
+   "group": "itertools",
+   "params": [
+    [
+     "iter1",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter2",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter3",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter4",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter5",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter6",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iterables",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
     ]
    ],
    "returns": [
@@ -29985,6 +32010,103 @@
     ],
     [
      "iter6",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iterables",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     true,
+     "pos"
+    ],
+    [
+     "fillvalue",
+     "~_T",
+     false,
+     "kw"
+    ]
+   ],
+   "returns": [
+    "itertools.zip_longest",
+    [
+     "tuple",
+     "~_T",
+     "..."
+    ]
+   ],
+   "summary": "ziplongest object",
+   "doc": "ziplongest object Return a ziplongest object whose .next() method returns a tuple where the i-th element comes from the i-th iterable argument. The .next() method continues until the longest iterable in the argument sequence is exhausted and then it raises StopIteration. When the shorter iterables are exhausted, the fillvalue is substituted in their place. The fillvalue defaults to None or can…"
+  },
+  {
+   "id": "itertools.zip_longest@10+iterables",
+   "qualname": "itertools.zip_longest",
+   "kind": "constructor",
+   "module": "itertools",
+   "group": "itertools",
+   "params": [
+    [
+     "iter1",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter2",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter3",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter4",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter5",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iter6",
+     [
+      "Iterable",
+      "~_T"
+     ],
+     false,
+     "pos"
+    ],
+    [
+     "iterables",
      [
       "Iterable",
       "~_T"
@@ -31920,6 +34042,7 @@
      "Container",
      "Any"
     ],
+    "Hashable",
     "Buffer"
    ]
   },
@@ -32074,7 +34197,8 @@
     [
      "Container",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "collections._odict_items": {
@@ -32174,7 +34298,8 @@
      "SupportsRAdd",
      "Any",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "contextlib.AbstractContextManager": {
@@ -32264,7 +34389,8 @@
     [
      "_SupportsRound2",
      "decimal.Decimal"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "dict": {
@@ -32329,7 +34455,9 @@
   },
   "enum.Enum": {
    "typevars": [],
-   "supers": []
+   "supers": [
+    "Hashable"
+   ]
   },
   "enum.Flag": {
    "typevars": [],
@@ -32420,7 +34548,8 @@
     [
      "_SupportsRound2",
      "float"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "fractions.Fraction": {
@@ -32457,7 +34586,8 @@
     [
      "_SupportsRound2",
      "fractions.Fraction"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "frozenset": {
@@ -32485,7 +34615,8 @@
     [
      "Container",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "int": {
@@ -32519,7 +34650,8 @@
     [
      "_SupportsRound2",
      "int"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "io.BufferedIOBase": {
@@ -32955,7 +35087,9 @@
   },
   "numbers.Number": {
    "typevars": [],
-   "supers": []
+   "supers": [
+    "Hashable"
+   ]
   },
   "numbers.Rational": {
    "typevars": [],
@@ -33075,7 +35209,8 @@
     [
      "SupportsDunderGT",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "pathlib.PurePosixPath": {
@@ -33112,7 +35247,8 @@
     [
      "Container",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "re.Match": {
@@ -33125,7 +35261,9 @@
    "typevars": [
     "AnyStr"
    ],
-   "supers": []
+   "supers": [
+    "Hashable"
+   ]
   },
   "re.RegexFlag": {
    "typevars": [],
@@ -33172,7 +35310,8 @@
      "SupportsAdd",
      "Any",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "statistics._SizedIterable": {
@@ -33216,7 +35355,8 @@
     [
      "Container",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "structseq": {
@@ -33255,7 +35395,8 @@
     [
      "Container",
      "Any"
-    ]
+    ],
+    "Hashable"
    ]
   },
   "type": {

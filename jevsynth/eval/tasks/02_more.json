@@ -1,0 +1,660 @@
+[
+  {
+    "id": "max_value",
+    "prompt": "devuelve el número más grande de la lista",
+    "prompt_en": "return the largest number in the list",
+    "params": [
+      [
+        "nums",
+        "list[int]"
+      ]
+    ],
+    "returns": "int",
+    "tests": [
+      "assert solve([3, 9, 2]) == 9",
+      "assert solve([-1]) == -1"
+    ],
+    "max_steps": 3,
+    "oracle": [
+      "builtins.max@2",
+      "sym:nums",
+      "control:return",
+      "sym:n"
+    ]
+  },
+  {
+    "id": "sort_words",
+    "prompt": "ordena alfabéticamente las palabras del texto",
+    "prompt_en": "sort the words of the text alphabetically",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "list[str]",
+    "tests": [
+      "assert solve('pera manzana uva') == ['manzana', 'pera', 'uva']"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "builtins.str.split",
+      "sym:text",
+      "builtins.sorted",
+      "sym:items",
+      "control:return",
+      "sym:items2"
+    ]
+  },
+  {
+    "id": "count_distinct",
+    "prompt": "cuenta cuántos valores distintos hay en la lista",
+    "prompt_en": "count how many distinct values there are in the list",
+    "params": [
+      [
+        "values",
+        "list[str]"
+      ]
+    ],
+    "returns": "int",
+    "tests": [
+      "assert solve(['a', 'b', 'a']) == 2",
+      "assert solve([]) == 0"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "builtins.set@1",
+      "sym:values",
+      "builtins.len",
+      "sym:unique",
+      "control:return",
+      "sym:n"
+    ]
+  },
+  {
+    "id": "json_port",
+    "prompt": "lee el fichero JSON y devuelve el valor de la clave \"port\"",
+    "prompt_en": "read the JSON file and return the value of the key \"port\"",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
+    "returns": "int",
+    "files": {
+      "config.json": "{\"host\": \"localhost\", \"port\": 8080}"
+    },
+    "tests": [
+      "assert solve('config.json') == 8080"
+    ],
+    "max_steps": 5,
+    "oracle": [
+      "control:with",
+      "builtins.open",
+      "sym:path",
+      "json.load",
+      "sym:f",
+      "control:end",
+      "operator.getitem@map",
+      "sym:result",
+      "lit:'port'",
+      "control:return",
+      "sym:result2"
+    ]
+  },
+  {
+    "id": "count_lines",
+    "prompt": "cuenta las líneas del fichero",
+    "prompt_en": "count the lines of the file",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
+    "returns": "int",
+    "files": {
+      "a.txt": "uno\ndos\ntres\n"
+    },
+    "tests": [
+      "assert solve('a.txt') == 3"
+    ],
+    "max_steps": 5,
+    "oracle": [
+      "control:with",
+      "builtins.open",
+      "sym:path",
+      "io.TextIOWrapper.readlines",
+      "sym:f",
+      "control:end",
+      "builtins.len",
+      "sym:items",
+      "control:return",
+      "sym:n"
+    ]
+  },
+  {
+    "id": "sum_price",
+    "prompt": "suma la columna precio del CSV",
+    "prompt_en": "sum the precio column of the CSV",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
+    "returns": "float",
+    "files": {
+      "compra.csv": "producto,precio\npan,1.5\nleche,2\nfruta,3.25\n"
+    },
+    "tests": [
+      "assert solve('compra.csv') == 6.75"
+    ],
+    "max_steps": 6,
+    "oracle": [
+      "control:with",
+      "builtins.open",
+      "sym:path",
+      "csv.DictReader@1",
+      "sym:f",
+      "control:listcomp",
+      "sym:reader",
+      "builtins.float+x",
+      "operator.getitem@map",
+      "sym:row",
+      "lit:'precio'",
+      "control:nofilter",
+      "control:end",
+      "builtins.sum@1",
+      "sym:values",
+      "control:return",
+      "sym:result"
+    ]
+  },
+  {
+    "id": "replace_spaces",
+    "prompt": "reemplaza \" \" por \"_\" en el texto",
+    "prompt_en": "replace \" \" with \"_\" in the text",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "str",
+    "tests": [
+      "assert solve('a b c') == 'a_b_c'"
+    ],
+    "max_steps": 3,
+    "oracle": [
+      "builtins.str.replace",
+      "sym:text",
+      "lit:' '",
+      "lit:'_'",
+      "control:return",
+      "sym:text2"
+    ]
+  },
+  {
+    "id": "long_words",
+    "prompt": "devuelve las palabras del texto con más de 3 letras",
+    "prompt_en": "return the words of the text with more than 3 letters",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "list[str]",
+    "tests": [
+      "assert solve('el gato come pescado') == ['gato', 'come', 'pescado']"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "builtins.str.split",
+      "sym:text",
+      "control:listcomp",
+      "sym:items",
+      "sym:item",
+      "operator.gt@num",
+      "builtins.len",
+      "sym:item",
+      "lit:3",
+      "control:return",
+      "sym:items2"
+    ]
+  },
+  {
+    "id": "word_lengths",
+    "prompt": "devuelve la longitud de cada palabra del texto",
+    "prompt_en": "return the length of each word of the text",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "list[int]",
+    "tests": [
+      "assert solve('hola que tal') == [4, 3, 3]"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "builtins.str.split",
+      "sym:text",
+      "control:listcomp",
+      "sym:items",
+      "builtins.len",
+      "sym:item",
+      "control:nofilter",
+      "control:return",
+      "sym:values"
+    ]
+  },
+  {
+    "id": "join_lines",
+    "prompt": "une las líneas de la lista con \", \"",
+    "prompt_en": "join the lines of the list with \", \"",
+    "params": [
+      [
+        "lines",
+        "list[str]"
+      ]
+    ],
+    "returns": "str",
+    "tests": [
+      "assert solve(['a', 'b', 'c']) == 'a, b, c'"
+    ],
+    "max_steps": 3,
+    "oracle": [
+      "builtins.str.join",
+      "lit:', '",
+      "sym:lines",
+      "control:return",
+      "sym:text"
+    ]
+  },
+  {
+    "id": "print_upper_lines",
+    "prompt": "lee nombres.txt y muestra cada línea sin espacios sobrantes y en mayúsculas",
+    "prompt_en": "read nombres.txt and print each line stripped of extra spaces and in upper case",
+    "files": {
+      "nombres.txt": "ana\n  luis \n"
+    },
+    "stdout": "ANA\nLUIS",
+    "max_steps": 6,
+    "oracle": [
+      "control:with",
+      "builtins.open",
+      "lit:'nombres.txt'",
+      "control:for",
+      "sym:f",
+      "builtins.str.strip",
+      "sym:line",
+      "builtins.str.upper",
+      "sym:text",
+      "control:print",
+      "sym:text2",
+      "control:end",
+      "control:end"
+    ]
+  },
+  {
+    "id": "mode_city",
+    "prompt": "devuelve el valor más frecuente de la columna ciudad del CSV",
+    "prompt_en": "return the most common value of the ciudad column of the CSV",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
+    "returns": "str",
+    "files": {
+      "gente.csv": "nombre,ciudad\nana,Madrid\nluis,Sevilla\neva,Madrid\n"
+    },
+    "tests": [
+      "assert solve('gente.csv') == 'Madrid'"
+    ],
+    "max_steps": 6,
+    "oracle": [
+      "control:with",
+      "builtins.open",
+      "sym:path",
+      "csv.DictReader@1",
+      "sym:f",
+      "control:listcomp",
+      "sym:reader",
+      "operator.getitem@map",
+      "sym:row",
+      "lit:'ciudad'",
+      "control:nofilter",
+      "control:end",
+      "statistics.mode",
+      "sym:items",
+      "control:return",
+      "sym:text"
+    ]
+  },
+  {
+    "id": "count_numbers_regex",
+    "prompt": "cuenta cuántos números aparecen en el texto usando la expresión \"\\d+\"",
+    "prompt_en": "count how many numbers appear in the text using the pattern \"\\d+\"",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "int",
+    "tests": [
+      "assert solve('a1 b22 c 333') == 3",
+      "assert solve('nada') == 0"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "re.findall",
+      "lit:'\\\\d+'",
+      "sym:text",
+      "builtins.len",
+      "sym:items",
+      "control:return",
+      "sym:n"
+    ]
+  },
+  {
+    "id": "file_suffix",
+    "prompt": "devuelve la extensión del nombre de fichero",
+    "prompt_en": "return the extension of the file name",
+    "params": [
+      [
+        "name",
+        "str"
+      ]
+    ],
+    "returns": "str",
+    "tests": [
+      "assert solve('informe.pdf') == '.pdf'",
+      "assert solve('a/b.tar.gz') == '.gz'"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "pathlib.Path+args",
+      "sym:name",
+      "pathlib.PurePath.suffix",
+      "sym:path",
+      "control:return",
+      "sym:text"
+    ]
+  },
+  {
+    "id": "rounded_mean",
+    "prompt": "devuelve la media de los números redondeada a 1 decimal",
+    "prompt_en": "return the mean of the numbers rounded to 1 decimal",
+    "params": [
+      [
+        "nums",
+        "list[float]"
+      ]
+    ],
+    "returns": "float",
+    "tests": [
+      "assert solve([1.0, 2.0, 2.0]) == 1.7"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "statistics.mean",
+      "sym:nums",
+      "builtins.round@1",
+      "sym:value",
+      "lit:1",
+      "control:return",
+      "sym:value2"
+    ]
+  },
+  {
+    "id": "sum_squares",
+    "prompt": "suma los cuadrados de los números",
+    "prompt_en": "sum the squares of the numbers",
+    "params": [
+      [
+        "nums",
+        "list[int]"
+      ]
+    ],
+    "returns": "int",
+    "tests": [
+      "assert solve([1, 2, 3]) == 14",
+      "assert solve([]) == 0"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "control:listcomp",
+      "sym:nums",
+      "operator.mul@int",
+      "sym:x",
+      "sym:x",
+      "control:nofilter",
+      "builtins.sum@1",
+      "sym:values",
+      "control:return",
+      "sym:result"
+    ]
+  },
+  {
+    "id": "word_counts",
+    "prompt": "cuenta cuántas veces aparece cada palabra y devuelve un diccionario",
+    "prompt_en": "count how many times each word appears and return a dictionary",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "dict[str, int]",
+    "tests": [
+      "assert solve('a b a') == {'a': 2, 'b': 1}"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "builtins.str.split",
+      "sym:text",
+      "collections.Counter@3",
+      "sym:items",
+      "control:return",
+      "sym:counts"
+    ]
+  },
+  {
+    "id": "csv_row_count_script",
+    "prompt": "lee datos.csv y muestra cuántas filas de datos tiene",
+    "prompt_en": "read datos.csv and print how many data rows it has",
+    "files": {
+      "datos.csv": "a,b\n1,2\n3,4\n5,6\n"
+    },
+    "stdout": "3",
+    "max_steps": 6,
+    "oracle": [
+      "control:with",
+      "builtins.open",
+      "lit:'datos.csv'",
+      "csv.DictReader@1",
+      "sym:f",
+      "builtins.list@1",
+      "sym:reader",
+      "builtins.len",
+      "sym:rows",
+      "control:print",
+      "sym:n",
+      "control:end"
+    ]
+  },
+  {
+    "id": "even_numbers",
+    "prompt": "devuelve los números de la lista cuyo resto al dividir entre 2 es 0",
+    "prompt_en": "return the numbers of the list whose remainder when divided by 2 is 0",
+    "params": [
+      [
+        "nums",
+        "list[int]"
+      ]
+    ],
+    "returns": "list[int]",
+    "tests": [
+      "assert solve([1, 2, 3, 4]) == [2, 4]"
+    ],
+    "max_steps": 3,
+    "oracle": [
+      "control:listcomp",
+      "sym:nums",
+      "sym:x",
+      "operator.eq",
+      "operator.mod",
+      "sym:x",
+      "lit:2",
+      "lit:0",
+      "control:return",
+      "sym:values"
+    ]
+  },
+  {
+    "id": "comment_lines",
+    "prompt": "devuelve las líneas del fichero que empiezan por \"#\"",
+    "prompt_en": "return the lines of the file that start with \"#\"",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
+    "returns": "list[str]",
+    "files": {
+      "conf.txt": "# a\nb\n# c\n"
+    },
+    "tests": [
+      "assert solve('conf.txt') == ['# a\\n', '# c\\n']"
+    ],
+    "max_steps": 4,
+    "oracle": [
+      "control:with",
+      "builtins.open",
+      "sym:path",
+      "control:listcomp",
+      "sym:f",
+      "sym:line",
+      "builtins.str.startswith",
+      "sym:line",
+      "lit:'#'",
+      "control:end",
+      "control:return",
+      "sym:items"
+    ]
+  },
+  {
+    "id": "write_file",
+    "prompt": "escribe el texto recibido en salida.txt abriendo el fichero en modo \"w\"",
+    "prompt_en": "write the received text to salida.txt opening the file in mode \"w\"",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "tests": [
+      "solve('hola')",
+      "assert open('salida.txt').read() == 'hola'"
+    ],
+    "max_steps": 3,
+    "oracle": [
+      "control:with",
+      "builtins.open+mode",
+      "lit:'salida.txt'",
+      "lit:'w'",
+      "io.TextIOWrapper.write",
+      "sym:f",
+      "sym:text",
+      "control:end"
+    ]
+  },
+  {
+    "id": "reverse_words",
+    "prompt": "invierte el orden de las palabras de la frase",
+    "prompt_en": "reverse the order of the words in the sentence",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "str",
+    "tests": [
+      "assert solve('a b c') == 'c b a'"
+    ],
+    "max_steps": 4,
+    "tags": [
+      "limite:literal"
+    ]
+  },
+  {
+    "id": "sort_rows_by_age",
+    "prompt": "ordena las filas del CSV por la columna edad",
+    "prompt_en": "sort the rows of the CSV by the edad column",
+    "params": [
+      [
+        "path",
+        "str"
+      ]
+    ],
+    "returns": "list[dict[str, str]]",
+    "files": {
+      "p.csv": "n,edad\na,30\nb,20\n"
+    },
+    "tests": [
+      "assert [r['n'] for r in solve('p.csv')] == ['b', 'a']"
+    ],
+    "max_steps": 5,
+    "tags": [
+      "limite:callable"
+    ]
+  },
+  {
+    "id": "is_palindrome",
+    "prompt": "devuelve si el texto es un palíndromo",
+    "prompt_en": "return whether the text is a palindrome",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "bool",
+    "tests": [
+      "assert solve('reconocer') is True",
+      "assert solve('hola') is False"
+    ],
+    "max_steps": 3,
+    "tags": [
+      "limite:sintaxis"
+    ]
+  },
+  {
+    "id": "longest_word",
+    "prompt": "devuelve la palabra más larga del texto",
+    "prompt_en": "return the longest word in the text",
+    "params": [
+      [
+        "text",
+        "str"
+      ]
+    ],
+    "returns": "str",
+    "tests": [
+      "assert solve('el murciélago vuela') == 'murciélago'"
+    ],
+    "max_steps": 3,
+    "tags": [
+      "limite:callable"
+    ]
+  }
+]

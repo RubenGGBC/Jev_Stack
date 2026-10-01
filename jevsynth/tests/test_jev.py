@@ -25,6 +25,7 @@ OPTS = [
 ]
 STATE = format_state("lee el csv", "siguiente instrucción", "def solve(f):\n    ⟨?⟩")
 
+
 def _answer(body: dict[str, Any], pick: Callable[[list[str]], str]) -> Any:
     answers: dict[str, Any] = {}
     for name, q in body["questions"].items():

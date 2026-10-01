@@ -17,7 +17,7 @@ from jevsynth.literals.model import LiteralSource, LiteralValue
 _QUOTED = re.compile(r"\"([^\"\n]+)\"|'([^'\n]+)'|«([^»\n]+)»|“([^”\n]+)”|`([^`\n]+)`")
 _FILENAME = re.compile(r"(?<![\w/.-])((?:[\w-]+/)*[\w-]+\.[A-Za-z][A-Za-z0-9]{0,4})(?![\w])")
 _NUMBER = re.compile(r"(?<![\w.])(-?\d+(?:[.,]\d+)?)(?![\w]|[.,]\d)")
-_IDENT = r"([A-Za-z_][A-Za-z0-9_]*)"
+_IDENT = r"([A-Za-z_][A-Za-z0-9_]*)(?!\w)"  # (?!\w): no cortar "números" en "n"
 
 _STOP = frozenset(
     {
@@ -25,6 +25,9 @@ _STOP = frozenset(
         "the", "a", "an", "of", "each", "every", "all", "its", "their", "this", "that", "columna",
         "column", "campo", "field", "valores", "values", "datos", "data", "fichero", "archivo",
         "file", "y", "and", "en", "in", "por", "by", "con", "with",
+        # sustantivos genéricos: no son nombres de columna
+        "numbers", "number", "words", "word", "lines", "line", "rows", "row", "items", "item",
+        "elements", "text", "list", "lista", "texto", "palabras", "lineas", "filas", "elementos",
     }
 )  # fmt: skip
 _CUE = r"(?:columna|campo|clave|atributo|column|field|key|attribute)"
