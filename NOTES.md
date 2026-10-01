@@ -49,3 +49,14 @@
   petición no lo menciona, no existe. Límite conocido: "separa por comas" no da `","`.
 - Combinadores de control fijos: `with`, `for`, comprensión, `if`, `return`, `print`
   y `end` (cerrar bloque).
+
+## Fase 4
+
+- IR propia y pequeña (`emit/ir.py`) que se baja a `ast` y se emite con `ast.unparse`.
+  Los huecos se emiten como `...`, así que también el programa parcial compila y es lo
+  que ve el chooser como "resumen del programa".
+- Métodos, propiedades, operadores (`a + b`, `d[k]`, `x in c`, `not x`) y parámetros
+  solo-keyword se emiten con su sintaxis. `import` solo de los módulos usados.
+- Pase opcional de plegado: una temporal de un solo uso se mete en la instrucción
+  siguiente si se evalúa una sola vez allí (no en el cuerpo de un `for` ni en el
+  elemento/condición de una comprensión).
