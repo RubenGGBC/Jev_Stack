@@ -48,8 +48,9 @@ def _table(rows: list[dict[str, Any]]) -> list[str]:
         "|---|---|---|---|---|---|---|---|",
     ]
     for r in rows:
+        steps = f"{r['steps']:.1f}" if r["rate"] else "-"
         out.append(
-            f"| {r['name']} | {r['pass']} | {r['steps']:.1f} | {r['secs']:.2f} | {r['questions']:.1f} "
+            f"| {r['name']} | {r['pass']} | {steps} | {r['secs']:.2f} | {r['questions']:.1f} "
             f"| {r['requests']:.1f} | {r['backtracks']} | {r['low']:.1f} |"
         )
     return out
