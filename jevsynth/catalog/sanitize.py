@@ -13,7 +13,8 @@ MAX_DOC = 400
 
 # Patrones que podrían colarse como instrucciones en el estado que ve el chooser.
 INJECTION = re.compile(r"(ignore|disregard|system|assistant\s*:|user\s*:|instruction|prompt)", re.IGNORECASE)
-_MARKDOWN = re.compile(r"[`*_#>|\[\]{}]")
+_BOLD = re.compile(r"(?<![\w*])(\*\*|__|\*)([^\s*](?:[^*]*?[^\s*])?)\1(?![\w*])")
+_LINE_MARKS = re.compile(r"^\s*(?:#+|>+|[-*+]\s)\s*", re.MULTILINE)
 _SIGNATURE_LINE = re.compile(r"^[\w.]+\(.*\)(\s*->.*)?$")
 _SENTENCE_END = re.compile(r"(?<=[.!?])\s")
 
@@ -30,7 +31,11 @@ def _paragraphs(doc: str) -> list[str]:
 
 
 def clean(text: str) -> str:
-    text = _MARKDOWN.sub("", text)
+    """Quita marcas de markdown (no los `_` ni `*` de identificadores u operadores)."""
+    text = text.replace("`", "")
+    text = _BOLD.sub(r"\2", text)
+    text = _LINE_MARKS.sub("", text)
+    text = text.replace("|", " ")
     return re.sub(r"\s+", " ", text).strip()
 
 

@@ -1,4 +1,5 @@
 import functools
+import re
 
 import pytest
 
@@ -43,7 +44,8 @@ def test_descriptions_are_short_clean_and_safe(field: str) -> None:
         if field == "summary":
             assert 0 < len(text) <= MAX_SUMMARY, c.id
         assert "\n" not in text, c.id
-        assert "`" not in text and "**" not in text, c.id
+        assert "`" not in text, c.id
+        assert re.search(r"(?<!\w)\*\*\w.*?\*\*(?!\w)", text) is None, c.id  # **negrita**
         assert INJECTION.search(text) is None, (c.id, text)
         for pat in ("ignore", "system", "assistant:"):
             assert pat not in text.lower(), (c.id, text)
@@ -98,6 +100,9 @@ def test_summarize_first_sentence_and_truncation() -> None:
     assert len(out) <= MAX_SUMMARY and out.endswith("…")
     assert summarize("len(obj, /)\n--\n\nReturn the length.", "x") == "Return the length."
     assert summarize("Uses **bold** and `code`.", "x") == "Uses bold and code."
+    assert summarize("Make an iterator like zip_longest.", "x") == "Make an iterator like zip_longest."
+    assert summarize("Equivalent to base**exp.", "x") == "Equivalent to base**exp."
+    assert summarize("# Title\n> quoted", "x") == "Title quoted"
     assert summarize(None, "fallback") == "fallback"
 
 
