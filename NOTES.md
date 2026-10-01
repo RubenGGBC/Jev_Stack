@@ -40,3 +40,12 @@
 - Hallazgo: con tipos correctos `dict[str, str]` y `list[str]` también son
   `Iterable[str]`, así que `csv.reader(row)` es candidato. Es correcto por tipos; queda
   para el chooser descartarlo.
+
+## Fase 3
+
+- Extractor de literales con reglas fijas: comillas, ficheros, columnas (tras
+  "columna"/"campo"/"column", tras un agregado "media de X"/"sum of X", "X column"),
+  snake_case y números. No hay literales por defecto (ni `0`, ni `","`): si la
+  petición no lo menciona, no existe. Límite conocido: "separa por comas" no da `","`.
+- Combinadores de control fijos: `with`, `for`, comprensión, `if`, `return`, `print`
+  y `end` (cerrar bloque).
