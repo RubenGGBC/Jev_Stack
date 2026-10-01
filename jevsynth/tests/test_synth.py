@@ -167,4 +167,5 @@ def test_scores_are_log_probabilities() -> None:
     task = _phase5()[0]
     r = synthesize(task.synth_task(), _cat(), OracleChooser(task.oracle))
     assert r.score <= 0 and math.isfinite(r.score)
+    assert r.steps == 3  # split, len y return
     assert r.stats.queries > 0 and r.stats.expansions > 0

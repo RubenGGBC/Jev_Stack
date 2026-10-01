@@ -107,3 +107,20 @@
 - Pendiente: la petición de usar una clave de **Opper**. El SDK de Opper (`opperai`)
   no expone `system_one`/`Choice`/`Noul` ni probabilidades por opción; falta confirmar
   cómo da Opper acceso a Jev antes de escribir un adaptador.
+
+## Fase 7
+
+- 30 tareas (`eval/tasks/`): 26 con solución de referencia (secuencia para el oráculo) y
+  4 fuera de la expresividad actual, etiquetadas `limite:*`. Cada tarea tiene la petición
+  en español y en inglés con los mismos literales (hay un test que lo comprueba).
+- Runner: subproceso con `python -I`, timeout y sockets anulados antes del código.
+- Además de las líneas base pedidas (Random, Mock) se añadió un **oráculo ruidoso** que
+  acierta con probabilidad p por decisión. Random y Mock dan 0/30, así que sin él las
+  ablaciones de ancho de haz no muestran nada. Sirve para estimar qué precisión por
+  decisión necesita Jev.
+- Hallazgo: el Mock léxico no completaba funciones porque `return` nunca ganaba (sus
+  palabras no aparecen en la tarea). Ahora las opciones de cierre (`return`, fin de
+  bloque) siempre generan rama con su probabilidad real.
+- Resultados y análisis en `eval/REPORT.md`. Resumen: oráculo 26/30 (emisión sin
+  fallos), oráculo ruidoso 0,9 → 60 % con haz 3, el filtro por tipos vale +7 tareas, y
+  los fallos se concentran en tareas de 11+ decisiones.

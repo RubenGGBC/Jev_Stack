@@ -175,5 +175,12 @@ def synthesize(
     if best is None:
         return SynthResult(None, None, float("-inf"), reason, asker.stats, (), literals)
     return SynthResult(
-        eng.finalize(best), best.program, best.score, reason, asker.stats, best.decisions, literals
+        eng.finalize(best),
+        best.program,
+        best.score,
+        reason,
+        asker.stats,
+        best.decisions,
+        literals,
+        best.steps,
     )
